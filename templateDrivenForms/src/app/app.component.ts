@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from './Model/user';
 
 @Component({
   selector: 'app-root',
@@ -6,8 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
- public title:string = 'templateDrivenForms';
+  public topics: string[] = ["Angular", "React","Vue"];
 
-  public topics: string[] = 
-  ["Angular", "React", "HTML5", "CSS", "FullStack-Development", "Java Backend Development", "JavaScript", "Python backend Development"];
+  public userModel = new User("Rob", "rob@test.com", 1234689, "Vue", "morning", true);
 }
