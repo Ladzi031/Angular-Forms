@@ -30,6 +30,7 @@
             required
             [(ngModel)]="userModel.name"
           />
+          <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
         </div>
         <div class="form-group">
           <label>Email</label>
@@ -55,6 +56,8 @@
             name="phone"
             [(ngModel)]="userModel.phone"
           />
+          <!--d-none is bootstrap class, here we rendering it conditionally-->
+          <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone number is required and must be 10 digits</small>
         </div>
         <div class="form-group">
           <select
