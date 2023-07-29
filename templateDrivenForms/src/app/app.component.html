@@ -82,15 +82,19 @@
         </div>
         <div class="form-group">
           <select
-            class="custom-select"
+            #topic="ngModel"
+            [class.is-invalid]="topicHasError && topic.touched"
+            class="form-select mt-3 mb-3"
             name="topic"
             [(ngModel)]="userModel.topic"
+            (blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)"
           >
-            <option value="">I am interested in</option>
+            <option value="default">I am interested in</option>
             <option *ngFor="let topic of topics">
-              {{ topic | titlecase }}
+              {{ topic }}
             </option>
           </select>
+          <small class="text-danger" [class.d-none]="!topicHasError || topic.untouched">Please select at topic</small>
         </div>
 
         <div class="mb-3">
