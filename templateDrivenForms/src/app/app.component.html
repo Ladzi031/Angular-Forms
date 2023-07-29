@@ -16,22 +16,6 @@
       <h1>BootCamp Enrollment Form</h1>
       {{ userForm.value | json }}
       <form #userForm="ngForm">
-        <div ngModelGroup="address">
-        
-          <div class="form-group">
-            <label>Street</label>
-            <input type="text" class="form-control" name="streetName" ngModel />
-          </div>
-          <div class="form-group">
-            <label>City</label>
-            <input type="text" class="form-control" name="City" ngModel />
-          </div>
-          <div class="form-group">
-            <label>postalCode</label>
-            <input type="text" class="form-control" name="postalCode" ngModel />
-          </div>
-        </div>
-
         <div class="form-group">
           <label>Name</label>
           <input type="text" class="form-control" name="username" ngModel />
@@ -91,3 +75,19 @@
     </div>
   </body>
 </html>
+
+<!--<div ngModelGroup="address">
+        
+          <div class="form-group">
+            <label>Street</label>
+            <input type="text" class="form-control" name="streetName" ngModel />
+          </div>
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" class="form-control" name="City" ngModel />
+          </div>
+          <div class="form-group">
+            <label>postalCode</label>
+            <input type="text" class="form-control" name="postalCode" ngModel />
+          </div>
+        </div>-->
