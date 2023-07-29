@@ -16,7 +16,7 @@
       <h1>BootCamp Enrollment Form</h1>
       <!-- it is important that ngModel must go with the NAME attribute-->
       <!--property binding [ngModel] to the form-->
-      <form #userForm="ngForm">
+      <form #userForm="ngForm"  (ngSubmit)="onSubmit()" novalidate>
         
         <div class="form-group">
           <label>Name</label>
