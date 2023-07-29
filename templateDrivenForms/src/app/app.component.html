@@ -14,29 +14,31 @@
   <body>
     <div class="container-fluid">
       <h1>BootCamp Enrollment Form</h1>
-
-      {{ userForm.value | json }}
-      <hr />
-      {{ userModel | json }}
-
       <!-- it is important that ngModel must go with the NAME attribute-->
       <!--property binding [ngModel] to the form-->
       <form #userForm="ngForm">
         <div class="form-group">
           <label>Name</label>
+          <!--#name to point to the ngModel to acces: properites and classes
+           ng-touch, ng-pristine, ng-valid and their opposite values: untouched, invalid and dirty-->
           <input
+            #name="ngModel"
             type="text"
+            [class.is-invalid]="name.invalid && name.touched"
             class="form-control"
             name="username"
+            required
             [(ngModel)]="userModel.name"
           />
         </div>
-
         <div class="form-group">
           <label>Email</label>
           <input
+            required
             type="email"
+            #email="ngModel"
             class="form-control"
+            [class.is-invalid]="email.invalid && email.touched"
             name="Email"
             [(ngModel)]="userModel.email"
           />
@@ -44,7 +46,11 @@
         <div class="form-group">
           <label>Phone</label>
           <input
+            required
             type="tel"
+            #phone="ngModel"
+            pattern="^\d{10}$"
+            [class.is-invalid]="phone.invalid && phone.touched"
             class="form-control"
             name="phone"
             [(ngModel)]="userModel.phone"
@@ -116,3 +122,9 @@
             <input type="text" class="form-control" name="postalCode" ngModel />
           </div>
         </div>-->
+
+<!--
+          {{ userForm.value | json }}
+          <hr />
+          {{ userModel | json }}
+        -->
