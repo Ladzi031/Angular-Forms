@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'templateDrivenForms';
+ public title:string = 'templateDrivenForms';
+
+  public topics: string[] = 
+  ["Angular", "React", "HTML5", "CSS", "FullStack-Development", "Java Backend Development", "JavaScript", "Python backend Development"];
 }
