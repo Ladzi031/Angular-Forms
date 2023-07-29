@@ -30,6 +30,7 @@ export class AppComponent {
   }
 
   public onSubmit(){
+    //console.log(ngForm)... to see formControls and formGroups!
     this.submitted = true;
    this.enrollmentService.enroll(this.userModel)
    .subscribe( 
