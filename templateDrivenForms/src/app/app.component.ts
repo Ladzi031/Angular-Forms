@@ -12,6 +12,7 @@ export class AppComponent {
 
  public topicHasError:boolean = true;
  
+ public errorMessage = "";
  public submitted:boolean =  false;
 
   public userModel = new User("Rob", "rob@test.com", 1234567890, "default", "morning", true);
@@ -33,7 +34,7 @@ export class AppComponent {
    this.enrollmentService.enroll(this.userModel)
    .subscribe( 
     (data) => console.log("Success!!", data),
-    (error) => console.error("Error!!", error));
+    (error) => this.errorMessage = error.statusText);
   }
 
 }

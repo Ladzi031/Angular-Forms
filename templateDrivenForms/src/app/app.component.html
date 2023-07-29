@@ -14,6 +14,10 @@
   <body>
     <div class="container-fluid">
       <h1>BootCamp Enrollment Form</h1>
+
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
       <!-- it is important that ngModel must go with the NAME attribute-->
       <!--property binding [ngModel] to the form-->
       <form #userForm="ngForm" *ngIf="!submitted" (ngSubmit)="onSubmit()" novalidate>
