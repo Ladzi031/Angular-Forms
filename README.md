@@ -1,3 +1,3 @@
 # Angular-Forms
 
-Learning the Angular Forms core-concepts.
+Learning Angular Forms core-concepts.
