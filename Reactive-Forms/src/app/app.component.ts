@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +7,35 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+public registrationForm :FormGroup;
+
+  constructor(private formBuilder: FormBuilder){
+    this.registrationForm =  this.formBuilder.group({
+      userName: [""],
+      password: [""],
+      confirmPassword: [""],
+      address: this.formBuilder.group({
+        city: [""],
+        state: [""],
+        postalCode: [""]
+      })
+    });
+  }
+
+  public loadApiData(){
+    this.registrationForm.patchValue({
+      userName: "James031",
+      address:{
+        city: "city",
+        state: "state"
+      }      
+    });
+  }   
+}
   
-  // this FormGroup should be a instance of the OVERALL form in the view/app.component.html
+  /*
+// this FormGroup should be a instance of the OVERALL form in the view/app.component.html
   // formControl is an instance of the fields within the form...
   registrationForm = new FormGroup({
     userName: new FormControl(""),
@@ -23,7 +50,7 @@ export class AppComponent {
 
   public loadApiData() {
     
-    /*
+  
      the setValue Method, here receives an object that matches the structure of the this.formGroup, and controlNames as keys (should be the same!)
     this.registrationForm.setValue({
       userName: "Ladzi031",
@@ -36,7 +63,6 @@ export class AppComponent {
       }
     });
 
-    */
     
     //however patchValue is less strict... it accepts a partial object
     this.registrationForm.patchValue({
@@ -47,5 +73,6 @@ export class AppComponent {
       }
     });
 
-  }    
-}
+  }
+
+   */ 

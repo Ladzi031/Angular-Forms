@@ -3,7 +3,7 @@
 
   <!--associate the formGroup in the component with the formGroup-->
   <form [formGroup]="registrationForm">
-   <!-- {{registrationForm.value | json }} -->
+    {{registrationForm.value | json }}
     <div class="form-group">
       <label>Username</label>
       <input formControlName="userName" type="text" class="form-control" />
