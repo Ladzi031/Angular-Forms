@@ -3,21 +3,43 @@
 
   <!--associate the formGroup in the component with the formGroup-->
   <form [formGroup]="registrationForm">
+    {{registrationForm.value | json }}
     <div class="form-group">
       <label>Username</label>
       <input formControlName="username" type="text" class="form-control" />
     </div>
     <div class="form-group">
       <label>Password</label>
-      <input  formControlName="password" type="password" class="form-control" />
+      <input formControlName="password" type="password" class="form-control" />
     </div>
     <div class="form-group">
       <label>Confirm Password</label>
-      <input formControlName="confirmPassword" type="password" class="form-control" />
+      <input
+        formControlName="confirmPassword"
+        type="password"
+        class="form-control"
+      />
     </div>
+    <!-- NB: nesting a formGroup-->
+    <div formGroupName="address">
+      <div class="form-group">
+        <label>City</label>
+        <input formControlName="city" type="text" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>State</label>
+        <input formControlName="state" type="text" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Postal code</label>
+        <input
+          formControlName="postalCode"
+          type="text"
+          class="form-control"
+        />
+      </div>
+    </div>
+
     <button class="btn btn-primary" type="submit">Register</button>
   </form>
-  <!--{{registrationForm.value | json }}-->
-
 </div>
-

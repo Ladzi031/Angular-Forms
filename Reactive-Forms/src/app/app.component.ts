@@ -14,6 +14,13 @@ export class AppComponent {
   registrationForm = new FormGroup({
     userName: new FormControl("Ladzi031"),
     password: new FormControl(""),
-    confirmPassword: new FormControl("")
+    confirmPassword: new FormControl(""),
+    address: new FormGroup({
+      city: new FormControl(""),
+      state: new FormControl(""),
+      postCode: new FormControl("")
+    })
   });
+  
+    
 }
