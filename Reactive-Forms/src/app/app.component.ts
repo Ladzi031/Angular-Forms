@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ public registrationForm :FormGroup;
 
   constructor(private formBuilder: FormBuilder){
     this.registrationForm =  this.formBuilder.group({
-      userName: [""],
+      userName: ['', [Validators.required, Validators.minLength(3)]],
       password: [""],
       confirmPassword: [""],
       address: this.formBuilder.group({
@@ -33,7 +33,9 @@ public registrationForm :FormGroup;
     });
   }   
 }
-  
+
+// for the built-in validation, you need: Validators
+
   /*
 // this FormGroup should be a instance of the OVERALL form in the view/app.component.html
   // formControl is an instance of the fields within the form...
