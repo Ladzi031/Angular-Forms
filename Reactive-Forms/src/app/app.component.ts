@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { forbiddenNameValidotor } from './shared/userName.validator';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ public registrationForm :FormGroup;
 
   constructor(private formBuilder: FormBuilder){
     this.registrationForm =  this.formBuilder.group({
-      userName: ['', [Validators.required, Validators.minLength(3)]],
+      userName: ['', [Validators.required, Validators.minLength(3), forbiddenNameValidotor]],
       password: [""],
       confirmPassword: [""],
       address: this.formBuilder.group({

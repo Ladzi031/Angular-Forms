@@ -31,6 +31,11 @@
           *ngIf="registrationForm.get('userName')?.errors?.['minlength']"
           >Username should be a at least 4 characters</small
         >
+        <small
+          class="text-danger"
+          *ngIf="registrationForm.get('userName')?.errors?.['forbiddenName']"
+          >{{registrationForm.get('userName')?.errors?.['forbiddenName'].value}} Username not allowed</small
+        >
       </div>
       <!--
         <small
