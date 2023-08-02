@@ -13,7 +13,7 @@ public registrationForm :FormGroup;
 
   constructor(private formBuilder: FormBuilder){
     this.registrationForm =  this.formBuilder.group({
-      userName: ['', [Validators.required, Validators.minLength(3), forbiddenNameValidotor]],
+      userName: ['', [Validators.required, Validators.minLength(3), forbiddenNameValidotor(/password/)]], // we can then specify a pattern as a parameter to test against the userName
       password: [""],
       confirmPassword: [""],
       address: this.formBuilder.group({

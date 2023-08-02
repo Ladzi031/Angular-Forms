@@ -1,8 +1,10 @@
-import { AbstractControl } from "@angular/forms";
+import { AbstractControl, ValidatorFn } from "@angular/forms";
 
- export function forbiddenNameValidotor(control : AbstractControl)  {
+export function forbiddenNameValidotor(forbiddenName: RegExp): ValidatorFn {
 
-    // a regex Test...
-    const forbidden :boolean = /admin/.test(control.value);
-    return forbidden ? {'forbiddenName': {value: control.value}} : null;
+    return (control : AbstractControl) => {
+        // a regex Test...
+        const forbidden :boolean = forbiddenName.test(control.value);
+        return forbidden ? {'forbiddenName': { value: control.value }} : null;
+    }   
 }
