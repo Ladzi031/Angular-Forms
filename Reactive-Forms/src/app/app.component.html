@@ -5,11 +5,12 @@
   <form [formGroup]="registrationForm">
     <!--f {{registrationForm.value | json }} -->
 
-{{ registrationForm.get('userName')?.errors | json }}
+    <!-- {{ registrationForm.errors | json }} -->
+    <!-- {{registrationForm.get('userName').errors | json }} -->
+
     <div class="form-group">
       <label>Username</label>
       <input
-       
         [class.is-invalid]="
           registrationForm.get('userName')?.invalid &&
           registrationForm.get('userName')?.touched
@@ -17,7 +18,6 @@
         formControlName="userName"
         type="text"
         class="form-control"
-       
       />
       <div
         *ngIf="
@@ -25,7 +25,11 @@
           registrationForm.get('userName')?.touched
         "
       >
-        <small class="text-danger" *ngIf="registrationForm.get('userName')?.errors?.['required']">Username is required </small>
+        <small
+          class="text-danger"
+          *ngIf="registrationForm.get('userName')?.errors?.['required']"
+          >Username is required
+        </small>
         <small
           class="text-danger"
           *ngIf="registrationForm.get('userName')?.errors?.['minlength']"
@@ -34,7 +38,8 @@
         <small
           class="text-danger"
           *ngIf="registrationForm.get('userName')?.errors?.['forbiddenName']"
-          >{{registrationForm.get('userName')?.errors?.['forbiddenName'].value}} Username not allowed</small
+          >{{registrationForm.get('userName')?.errors?.['forbiddenName'].value}}
+          Username not allowed</small
         >
       </div>
       <!--
@@ -55,10 +60,13 @@
     <div class="form-group">
       <label>Confirm Password</label>
       <input
+      [class.is-invalid]="registrationForm.errors?.['misMatch']"
         formControlName="confirmPassword"
         type="password"
         class="form-control"
       />
+      <small class="text-danger" *ngIf="registrationForm.errors?.['misMatch']">Password do not match</small>
+      
     </div>
     <!-- NB: nesting a formGroup-->
     <div formGroupName="address">

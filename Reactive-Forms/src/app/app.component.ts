@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { forbiddenNameValidotor } from './shared/userName.validator';
+import { PasswordValidator } from './shared/password.validator';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent {
 
 public registrationForm :FormGroup;
 
-  constructor(private formBuilder: FormBuilder){
+  constructor(private formBuilder: FormBuilder) {
     this.registrationForm =  this.formBuilder.group({
       userName: ['', [Validators.required, Validators.minLength(3), forbiddenNameValidotor(/password/)]], // we can then specify a pattern as a parameter to test against the userName
       password: [""],
@@ -21,7 +22,7 @@ public registrationForm :FormGroup;
         state: [""],
         postalCode: [""]
       })
-    });
+    },{validator: PasswordValidator});
   }
 
   public loadApiData(){
