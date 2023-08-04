@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 
 app.post("/enroll", (req, res) => {
     console.log(req.body);
-    res.status(401).send({"message": "Data Received!"});
+    res.status(200).send({"message": "Data Received!"});
 });
 
 app.listen(PORT, () => {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
 import { forbiddenNameValidotor } from './shared/userName.validator';
 import { PasswordValidator } from './shared/password.validator';
+import { RegistrationService } from './services/registration.service';
 
 @Component({
   selector: 'app-root',
@@ -23,11 +24,13 @@ addAlternateEmail(){
 }
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private registrationService: RegistrationService) {
     this.registrationForm = this.formBuilder.group({});
   }
 
   ngOnInit(): void {
+
+
     this.registrationForm =  this.formBuilder.group({
       userName: ['', [Validators.required, Validators.minLength(3), forbiddenNameValidotor(/password/)]], // we can then specify a pattern as a parameter to test against the userName
       password: [""],
@@ -73,8 +76,15 @@ addAlternateEmail(){
   }
   
   onSubmit() {
-    console.log(this.registrationForm.value);
+    //console.log(this.registrationForm.value);
+    
+    this.registrationService.register(this.registrationForm.value).subscribe( 
+      (response) => console.log(response),
+
+    )
   }
+
+
 }
 
 // for the built-in validation, you need: Validators
