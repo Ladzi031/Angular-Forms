@@ -6,7 +6,17 @@
     <!--f {{registrationForm.value | json }} -->
 
     <!-- {{ registrationForm.errors | json }} -->
-    <!-- {{registrationForm.get('userName').errors | json }} -->
+    <!-- {{registrationForm.get('userName').errors | json }} 
+      
+      
+    {{
+      registrationForm.get("email")?.valid &&
+        registrationForm.get("email")?.touched | json
+    }}
+
+    {{ registrationForm.get("email")?.errors | json }}
+    -->
+
 
     <div class="form-group">
       <label>Username</label>
@@ -60,14 +70,45 @@
     <div class="form-group">
       <label>Confirm Password</label>
       <input
-      [class.is-invalid]="registrationForm.errors?.['misMatch']"
+        [class.is-invalid]="registrationForm.errors?.['misMatch']"
         formControlName="confirmPassword"
         type="password"
         class="form-control"
       />
-      <small class="text-danger" *ngIf="registrationForm.errors?.['misMatch']">Password do not match</small>
-      
+      <small class="text-danger" *ngIf="registrationForm.errors?.['misMatch']"
+        >Password do not match</small
+      >
     </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        [class.is-invalid]="
+          registrationForm.get('email')?.invalid &&
+          registrationForm.get('email')?.touched
+        "
+        formControlName="email"
+        type="text"
+        class="form-control"
+      />
+
+      <small
+        class="text-danger"
+        [class.d-none]="
+          registrationForm.get('email')?.valid ||
+          registrationForm.get('email')?.untouched
+        "
+        >Email is required</small
+      >
+    </div>
+    <div class="form-group">
+      <input
+        formControlName="subscribe"
+        type="checkbox"
+        class="form-check-input"
+      />
+      <label class="form-check-label">Send me promotional offers</label>
+    </div>
+
     <!-- NB: nesting a formGroup-->
     <div formGroupName="address">
       <div class="form-group">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { forbiddenNameValidotor } from './shared/userName.validator';
 import { PasswordValidator } from './shared/password.validator';
@@ -8,21 +8,47 @@ import { PasswordValidator } from './shared/password.validator';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
 public registrationForm :FormGroup;
 
+
   constructor(private formBuilder: FormBuilder) {
+    this.registrationForm = this.formBuilder.group({});
+  }
+
+  ngOnInit(): void {
     this.registrationForm =  this.formBuilder.group({
       userName: ['', [Validators.required, Validators.minLength(3), forbiddenNameValidotor(/password/)]], // we can then specify a pattern as a parameter to test against the userName
       password: [""],
       confirmPassword: [""],
+      email: [''],
+      subscribe: [false],
       address: this.formBuilder.group({
         city: [""],
         state: [""],
         postalCode: [""]
       })
     },{validator: PasswordValidator});
+
+    //get a hold of the subscribe FormControl filed....
+    // apply conditional validation based on the subscribe FormControl field...
+    this.registrationForm.get('subscribe')?.valueChanges.subscribe( (checkedValue) => {
+      const email = this.registrationForm.get('email');
+
+      // console.log("the value has changed!", checkedValue);
+      
+      if(checkedValue){
+
+        email?.setValidators(Validators.required);
+      
+      }else {
+        email?.clearValidators();
+      }
+
+      email?.updateValueAndValidity();
+
+    } )
   }
 
   public loadApiData(){
