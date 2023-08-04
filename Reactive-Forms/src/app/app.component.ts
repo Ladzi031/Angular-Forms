@@ -70,7 +70,11 @@ addAlternateEmail(){
         state: "state"
       }      
     });
-  }   
+  }
+  
+  onSubmit() {
+    console.log(this.registrationForm.value);
+  }
 }
 
 // for the built-in validation, you need: Validators

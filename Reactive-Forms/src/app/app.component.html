@@ -2,7 +2,7 @@
   <h2>Registration Form</h2>
 
   <!--associate the formGroup in the component with the formGroup-->
-  <form [formGroup]="registrationForm">
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <!--f {{registrationForm.value | json }} -->
 
     <!-- {{ registrationForm.errors | json }} -->
@@ -16,6 +16,7 @@
 
     {{ registrationForm.get("email")?.errors | json }}
     -->
+    {{registrationForm.value | json }}
 
     <div class="form-group">
       <label>Username</label>
@@ -89,9 +90,9 @@
       </button>
       <div
         formArrayName="alternateEmails"
-        *ngFor="let email of alternateEmails.controls; let i = index"
+        *ngFor="let email of alternateEmails.controls; let i=index"
       >
-        <input type="text" class="form-control my-1" formControlName="i" />
+        <input type="text" class="form-control my-1" formControlName="{{ i }}" />
       </div>
       <input
         [class.is-invalid]="
