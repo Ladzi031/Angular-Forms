@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
 import { forbiddenNameValidotor } from './shared/userName.validator';
 import { PasswordValidator } from './shared/password.validator';
 
@@ -11,6 +11,16 @@ import { PasswordValidator } from './shared/password.validator';
 export class AppComponent implements OnInit{
 
 public registrationForm :FormGroup;
+
+
+get alternateEmails() {
+  return this.registrationForm.get('alternateEmails') as FormArray;
+}
+
+addAlternateEmail(){
+  this.alternateEmails.push(this.formBuilder.control("")); // add a new formcontrol...
+  console.log("this function is being called");
+}
 
 
   constructor(private formBuilder: FormBuilder) {
@@ -28,7 +38,8 @@ public registrationForm :FormGroup;
         city: [""],
         state: [""],
         postalCode: [""]
-      })
+      }),
+      alternateEmails: this.formBuilder.array([])
     },{validator: PasswordValidator});
 
     //get a hold of the subscribe FormControl filed....
@@ -37,7 +48,7 @@ public registrationForm :FormGroup;
       const email = this.registrationForm.get('email');
 
       // console.log("the value has changed!", checkedValue);
-      
+
       if(checkedValue){
 
         email?.setValidators(Validators.required);

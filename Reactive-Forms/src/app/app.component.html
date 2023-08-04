@@ -9,14 +9,13 @@
     <!-- {{registrationForm.get('userName').errors | json }} 
       
       
-    {{
+    {{ 
       registrationForm.get("email")?.valid &&
         registrationForm.get("email")?.touched | json
     }}
 
     {{ registrationForm.get("email")?.errors | json }}
     -->
-
 
     <div class="form-group">
       <label>Username</label>
@@ -81,6 +80,19 @@
     </div>
     <div class="form-group">
       <label>Email</label>
+      <button
+        type="button"
+        class="btn btn-secondary btn-sm m-2"
+        (click)="addAlternateEmail()"
+      >
+        Add another e-mail
+      </button>
+      <div
+        formArrayName="alternateEmails"
+        *ngFor="let email of alternateEmails.controls; let i = index"
+      >
+        <input type="text" class="form-control my-1" formControlName="i" />
+      </div>
       <input
         [class.is-invalid]="
           registrationForm.get('email')?.invalid &&
