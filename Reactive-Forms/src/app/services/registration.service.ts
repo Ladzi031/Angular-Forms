@@ -14,12 +14,12 @@ export class RegistrationService {
      }
     
      register(userData: any){
-      return this._http.post<any>(this.url, userData);
+      return this._http.post<any>(this.url, userData).pipe(catchError(this.errorHandler));
       // returns an Observable that other components might subscribe to
      }
 
      errorHandler(error: HttpErrorResponse) {
       return throwError (() => new Error(error.message));
-      //.pipe(catchError(this.errorHandler))
+      //
      }
 }
